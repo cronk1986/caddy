@@ -16,7 +16,17 @@ services:
       - CADDY_DOCKER_CADDYFILE=hybrid
     entrypoint: ["/bin/sh", "-c"]
     command: |
-    echo 'tu config...' > /etc/caddy/Caddyfile && caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+      echo '(import-docker-proxy)
+
+      evoapi.qbabit.com {
+        reverse_proxy /socket.io/* evolution_api_v2:8080 {
+          flush_interval -1
+        }
+
+        reverse_proxy evolution_api_v2:8080
+
+        encode gzip
+      }' > /etc/caddy/Caddyfile && caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
     networks:
       - caddy
     restart: unless-stopped
