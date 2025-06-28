@@ -6,5 +6,3 @@ USER root
 
 # Instalar bash y sh (busybox)
 RUN apk add --no-cache bash busybox-suid
-
-USER caddy
