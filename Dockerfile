@@ -1,6 +1,6 @@
 # Dockerfile
 
-FROM lucaslorentz/caddy-docker-proxy:2.10.0
+FROM lucaslorentz/caddy-docker-proxy:ci-alpine
 
 USER root
 
